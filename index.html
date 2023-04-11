@@ -66,8 +66,8 @@
 
     document.getElementById("Randomize").addEventListener("click", function() {
       let menu = "";
-      let selectedSides = [];
-      let selectedMains = [];
+      const selectedSides = [];
+      const selectedMains = [];
       for (let i = 0; i < daysOfWeek.length; i++) {
         let randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
         let randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
