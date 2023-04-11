@@ -71,9 +71,7 @@
       for (let i = 0; i < daysOfWeek.length; i++) {
         let randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
         let randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
-        if(randomMain === "Pizza"){
-          randomSide = "Salad";
-        }
+        
 
         while(selectedSides.includes(randomSide) || selectedMains.includes(randomMain)) {
           randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
@@ -81,6 +79,11 @@
         }
         selectedSides.push(randomSide);
         selectedMains.push(randomMain);
+        
+        if(randomMain === "Pizza"){
+          randomSide = "Salad";
+        }
+        
         if(randomMain === "Takeout"){
           randomSide = "N/A";
         }
