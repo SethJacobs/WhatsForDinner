@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<ul id="mains" style="display: none;">
+  <li>Tacos</li>
+  <li>Schnitzel</li>
+  <li>Falafel</li>
+  <li>BBQ</li>
+  <li>Meatballs and Spaghetti</li>
+  <li>Pizza</li>
+  <li>Sushi</li>
+  <li>Chicken</li>
+  <li>Chinese</li>
+  <li>Takeout</li>
+  <li>Salmon and other</li>
+  <li>Meat Pizza</li>
+  <li>Poke bowls</li>
+</ul>
+
+<ul id="side" style="display: none;">
+  <li>Salad</li>
+  <li>Cauliflower</li>
+  <li>Broccoli</li>
+  <li>Dirty Fries</li>
+  <li>Rice</li>
+  <li>String Beans</li>
+  <li>Egg Rolls</li>
+</ul>
+
+
+<body>
+
+  <!-- Add your site or application content here -->
+  <h1 id="siteHeader" style="text-align: center; font-size: 65px; font-family: Pacifico, cursive; color: blue;">What's For Dinner?</h1>
+  <div id="buttonContainer" style="text-align: center; font-size: 40px;">
+    <button id="Randomize" style="background-color: aliceblue; font-size: 20px;">Randomize dinners</button>
+  </div>
+
+
+
+  <script>
+    const mains = document.getElementById("mains").getElementsByTagName("li");
+    const sides = document.getElementById("side").getElementsByTagName("li");
+    const daysOfWeek = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"];
+
+    document.getElementById("Randomize").addEventListener("click", function() {
+      let menu = "";
+      let selectedSides = [];
+      let selectedMains = [];
+      for (let i = 0; i < daysOfWeek.length; i++) {
+        let randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
+        let randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
+        if(randomMain === "Pizza"){
+          randomSide = "Salad";
+        }
+
+        if(selectedSides.includes(randomSide) || selectedMains.includes(randomMain)) {
+          randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
+          randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
+        }
+        selectedSides.push(randomSide);
+        selectedMains.push(randomMain);
+        if(randomMain === "Takeout"){
+          randomSide = "N/A";
+        }
+        menu += daysOfWeek[i] + ": " + randomMain + " with " + randomSide + "<br>";
+      }
+      document.getElementById("menuContainer").innerHTML = menu;
+    });
+  </script>
+
+  <div id="menuContainer" style="text-align: center; color: #888888; font-size: 45px; margin-top: 50px;"></div>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
