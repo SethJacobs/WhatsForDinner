@@ -75,7 +75,7 @@
           randomSide = "Salad";
         }
 
-        if(selectedSides.includes(randomSide) || selectedMains.includes(randomMain)) {
+        while(selectedSides.includes(randomSide) || selectedMains.includes(randomMain)) {
           randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
           randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
         }
