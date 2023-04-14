@@ -51,60 +51,96 @@
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <h1 id="siteHeader" style="text-align: center; font-size: 65px; font-family: Pacifico, cursive; color: blue;">What's For Dinner?</h1>
-  <div id="buttonContainer" style="text-align: center; font-size: 40px;">
-    <button id="Randomize" style="background-color: aliceblue; font-size: 20px;">Randomize dinners</button>
-  </div>
+<!-- Add your site or application content here -->
+<h1 id="siteHeader" style="text-align: center; font-size: 65px; font-family: Pacifico, cursive; color: blue;">What's For Dinner?</h1>
+<div id="buttonContainer" style="text-align: center; font-size: 40px;">
+  <button id="Randomize" style="background-color: aliceblue; font-size: 20px;">Randomize dinners</button>
+</div>
+
+<div id="weeklyShoppingList" style="display: none; text-align: center;" >
+  <button id="weeklyShoppingListButton" style="background-color: aliceblue; font-size: 20px;">Weekly Shopping List</button>
+</div>
 
 
 
-  <script>
-    const mains = document.getElementById("mains").getElementsByTagName("li");
-    const sides = document.getElementById("side").getElementsByTagName("li");
-    const daysOfWeek = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"];
+<script>
+  const mains = document.getElementById("mains").getElementsByTagName("li");
+  const sides = document.getElementById("side").getElementsByTagName("li");
+  const daysOfWeek = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"];
+  const buttonContainer = document.getElementById("weeklyShoppingList");
 
-    document.getElementById("Randomize").addEventListener("click", function() {
-      let menu = "";
-      const selectedSides = [];
-      const selectedMains = [];
-      for (let i = 0; i < daysOfWeek.length; i++) {
-        let randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
-        let randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
-        
+  const mainsShopping = {
+    Tacos: ["Beef", "Lettuce", "Tomato", "Tortilla"],
+    Schnitzel: ["Chicken", "Breadcrumbs", "Egg", "Flour"],
+    Falafel: ["Chickpeas", "Garlic", "Cumin", "Coriander"],
+    BBQ: ["Hot-dogs", "Burgers","BBQ Sauce"],
+    "Meatballs and Spaghetti": ["Beef", "Tomato Sauce", "Spaghetti"],
+    Pizza: ["Pizza Dough", "Tomato Sauce", "Mozzarella", "Toppings"],
+    Sushi: ["Rice", "Nori", "Fish", "Vegetables"],
+    Chicken: ["Chicken", "spices"],
+    Chinese: ["Chicken", "meat","Broccoli", "Carrots", "Soy Sauce", "Rice"],
+    Takeout: [],
+    "Salmon and other": ["Salmon"],
+    "Meat Pizza": ["Dough", "Tomato Sauce", "chopped meat"],
+    "Poke bowls": ["Rice", "chopped meat", "Vegetables"],
+  };
 
-        while(selectedSides.includes(randomSide) || selectedMains.includes(randomMain)) {
-          randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
-          randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
-        }
-        selectedSides.push(randomSide);
-        selectedMains.push(randomMain);
-        
-        if(randomMain === "Pizza"){
-          randomSide = "Salad";
-        }
-        
-        if(randomMain === "Takeout"){
-          randomSide = "N/A";
-        }
-        menu += daysOfWeek[i] + ": " + randomMain + " with " + randomSide + "<br>";
+  const sidesShopping = {
+    Salad: ["Lettuce", "Peppers", "Cucumber", "Dressing"],
+    Cauliflower: ["Cauliflower"],
+    Broccoli: ["Broccoli"],
+    "Dirty Fries": ["Fries", "Onion"],
+    Rice: ["Rice"],
+    "String Beans": ["String Beans"],
+    "Egg Rolls": ["Egg Roll Wrapper", "Cabbage", "Carrots", "chopped meat"],
+  };
+
+  document.getElementById("Randomize").addEventListener("click", function() {
+    let menu = "MENU<br>"
+    let shoppingList = "SHOPPING LIST<br>";
+    let selectedSides = [];
+    let selectedMains = [];
+    for (let i = 0; i < daysOfWeek.length; i++) {
+      let randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
+      let randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
+      if(randomMain === "Pizza"){
+        randomSide = "Salad";
       }
-      document.getElementById("menuContainer").innerHTML = menu;
+
+      while(selectedSides.includes(randomSide) || selectedMains.includes(randomMain)) {
+        randomMain = mains[Math.floor(Math.random() * mains.length)].innerHTML;
+        randomSide = sides[Math.floor(Math.random() * sides.length)].innerHTML;
+      }
+      selectedSides.push(randomSide);
+      selectedMains.push(randomMain);
+      if(randomMain === "Takeout"){
+        randomSide = "N/A";
+      }
+
+      menu += daysOfWeek[i] + ": " + randomMain + " with " + randomSide + "<br>";
+      shoppingList += daysOfWeek[i] + ": " + mainsShopping[randomMain].join(", ") + ", " + sidesShopping[randomSide].join(", ") + "<br>";
+    }
+    document.getElementById("menuContainer").innerHTML = menu;
+    buttonContainer.style.display = "block";
+    buttonContainer.addEventListener("click", function() {
+      document.getElementById("menuContainer").innerHTML = shoppingList + "<br>" + menu
+
     });
-  </script>
+  });
+</script>
 
-  <div id="menuContainer" style="text-align: center; color: #888888; font-size: 45px; margin-top: 50px;"></div>
+<div id="menuContainer" style="text-align: center; color: #888888; font-size: 45px; margin-top: 50px;"></div>
 
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>
