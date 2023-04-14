@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="">
 <head>
     <meta charset="UTF-8">
     <title>Recipes</title>
@@ -75,6 +75,101 @@
         <option value="Poke bowls">Poke bowls</option>
     </select>
 </div>
+<div id="recipe" style="text-align: center"></div>
+
+
 
 </body>
+<script>
+    function updateRecipe() {
+        var select = document.getElementById("mains");
+        var recipeDiv = document.getElementById("recipe");
+        var selectedOption = select.options[select.selectedIndex].value;
+
+        // Add your recipes here
+        if (selectedOption === "Tacos") {
+            recipeDiv.innerHTML = "Tacos recipe goes here";
+        } else if (selectedOption === "Schnitzel") {
+            recipeDiv.innerHTML = "Schnitzel recipe goes here";
+        } else if (selectedOption === "Falafel") {
+            recipeDiv.innerHTML = "Falafel recipe goes here";
+        }
+        else if (selectedOption === "Meatballs") {
+            recipeDiv.innerHTML = "Meatballs recipe goes here";
+        }
+        else if (selectedOption === "BBQ") {
+            recipeDiv.innerHTML = "Hot dogs and hamburgers are the all-" +
+                "American backyard BBQ classics. To start, fire up the grill and let it get nice and hot " +
+                "- just like your burgers will be soon! For the hot dogs, choose your favorite brand and " +
+                "get creative with toppings. Ketchup, mustard, relish, sauerkraut, and onions are just " +
+                "the beginning! For the burgers, use freshly ground beef and shape them into patties. " +
+                "Sprinkle on some salt and pepper, and grill them up to your desired level of doneness. " +
+                "Don't forget to toast the buns! Add lettuce, tomato, or whatever else you like. " +
+                "And remember, no backyard BBQ is complete without a little friendly competition " +
+                "to see who can eat the most. Ready, set, grill!"
+            ;
+        }
+        else if (selectedOption === "Pizza") {
+            recipeDiv.innerHTML = "Ingredients:<br>" +
+                "- Pizza dough<br>" +
+                "- Tomato sauce<br>" +
+                "- Mozzarella cheese<br>" +
+                "- Toppings of your choice (onions, mushrooms, olives, etc.)<br>" +
+                "<br>" +
+                "Instructions:<br>" +
+                "1. Preheat your oven to 425°F (218°C).<br>" +
+                "2. Roll out the pizza dough into a circular shape.<br>" +
+                "3. Spread tomato sauce evenly over the dough, leaving a small border around the edge.<br>" +
+                "4. Sprinkle a generous amount of mozzarella cheese over the sauce.<br>" +
+                "5. Add your desired toppings to the pizza.<br>" +
+                "6. Place the pizza on a baking sheet and bake for 12-15 minutes, or until the crust is golden brown and the cheese is melted and bubbly.<br>" +
+                "7. Remove from the oven and let cool for a few minutes before slicing and serving.<br>" +
+                "<br>" +
+                "Enjoy your homemade pizza, and don't forget to share with your friends (or not, we won't judge)!";
+        }
+        else if (selectedOption === "Sushi") {
+            recipeDiv.innerHTML = "Sushi recipe goes here";
+        }
+        else if (selectedOption === "Chicken") {
+            recipeDiv.innerHTML = "Chicken recipe goes here";
+        }
+        else if (selectedOption === "Chinese") {
+            recipeDiv.innerHTML = "Chinese recipe goes here";
+        }
+        else if (selectedOption === "Takeout") {
+            recipeDiv.innerHTML = "Ingredients:<br>" +
+                "<br>" +
+                "Phone with a dialing function<br>" +
+                "Local restaurant menus (various options recommended)<br>" +
+                "Hunger for tasty food<br></br>" +
+                "Instructions:<br>" +
+                "<br>" +
+                "Begin by locating your phone and ensuring it has a dialing function. (Please note: this recipe is not compatible with rotary phones or telegraphs.)<br></br>" +
+                "Next, search your local area for restaurants that offer takeout services. We recommend choosing a restaurant that offers a wide variety of dishes to ensure maximum enjoyment and flexibility.<br>" +
+                "Once you've selected a restaurant, locate their menu and browse their delicious offerings. Don't be afraid to mix and match dishes to create a customized meal that suits your unique tastes!<br>" +
+                "When you've made your selections, pick up the phone and dial the restaurant's number. Be sure to speak clearly and provide your address for delivery, if necessary.<br>" +
+                "After placing your order, sit back, relax, and wait for your meal to arrive. Enjoy the anticipation of your upcoming culinary delight, and take the opportunity to set the table or prepare any drinks or side dishes you may wish to enjoy alongside your takeout.<br>" +
+                "When the delivery person arrives, be sure to thank them and retrieve your meal. Unpack the containers and marvel at the delicious aromas that fill the room.<br>" +
+                "Enjoy your takeout meal with friends, family, or solo - whichever you prefer. Savor every bite and revel in the convenience and ease of this amazing recipe.<br>" +
+                "When finished, dispose of any leftover containers and relish in the fact that you just prepared an incredible meal without lifting a finger in the kitchen!<br>" +
+                "Serving suggestions:<br>" +
+                "<br>" +
+                "Pair your takeout meal with your favorite beverage, such as a cold beer, a crisp white wine, or a refreshing soda.<br>" +
+                "Consider adding a side dish or two to round out your meal, such as a salad, some fresh bread, or a side of fries.<br>" +
+                "For a more formal dining experience, transfer your takeout meal to your own serving dishes and add your own garnishes or finishing touches.";
+        }
+        else if (selectedOption === "Salmon") {
+            recipeDiv.innerHTML = "Salmon recipe goes here";
+        }
+        else if (selectedOption === "Meat Pizza") {
+            recipeDiv.innerHTML = "Meat Pizza recipe goes here";
+        }
+        else if (selectedOption === "Poke bowls") {
+            recipeDiv.innerHTML = "Poke bowls recipe goes here";
+        }
+    }
+    var select = document.getElementById("mains");
+    select.addEventListener("change", updateRecipe);
+
+</script>
 </html>
