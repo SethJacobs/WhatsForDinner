@@ -57,15 +57,47 @@
     <button id="Randomize" style="background-color: aliceblue; font-size: 20px;">Randomize dinners</button>
   </div>
 
+  <div id="weeklyShoppingList" style="display: none; text-align: center;" >
+    <button id="weeklyShoppingListButton" style="background-color: aliceblue; font-size: 20px;">Weekly Shopping List</button>
+  </div>
+
 
 
   <script>
     const mains = document.getElementById("mains").getElementsByTagName("li");
     const sides = document.getElementById("side").getElementsByTagName("li");
     const daysOfWeek = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"];
+    const buttonContainer = document.getElementById("weeklyShoppingList");
+
+    const mainsShopping = {
+      Tacos: ["Beef", "Lettuce", "Tomato", "Tortilla"],
+      Schnitzel: ["Chicken", "Breadcrumbs", "Egg", "Flour"],
+      Falafel: ["Chickpeas", "Garlic", "Cumin", "Coriander"],
+      BBQ: ["Hot-dogs", "Burgers","BBQ Sauce"],
+      "Meatballs and Spaghetti": ["Beef", "Tomato Sauce", "Spaghetti"],
+      Pizza: ["Pizza Dough", "Tomato Sauce", "Mozzarella", "Toppings"],
+      Sushi: ["Rice", "Nori", "Fish", "Vegetables"],
+      Chicken: ["Chicken", "spices"],
+      Chinese: ["Chicken", "meat","Broccoli", "Carrots", "Soy Sauce", "Rice"],
+      Takeout: [],
+      "Salmon and other": ["Salmon"],
+      "Meat Pizza": ["Dough", "Tomato Sauce", "chopped meat"],
+      "Poke bowls": ["Rice", "chopped meat", "Vegetables"],
+    };
+
+    const sidesShopping = {
+      Salad: ["Lettuce", "Peppers", "Cucumber", "Dressing"],
+      Cauliflower: ["Cauliflower"],
+      Broccoli: ["Broccoli"],
+      "Dirty Fries": ["Fries", "Onion"],
+      Rice: ["Rice"],
+      "String Beans": ["String Beans"],
+      "Egg Rolls": ["Egg Roll Wrapper", "Cabbage", "Carrots", "chopped meat"],
+    };
 
     document.getElementById("Randomize").addEventListener("click", function() {
-      let menu = "";
+      let menu = "MENU<br>"
+      let shoppingList = "SHOPPING LIST<br>";
       let selectedSides = [];
       let selectedMains = [];
       for (let i = 0; i < daysOfWeek.length; i++) {
@@ -84,9 +116,16 @@
         if(randomMain === "Takeout"){
           randomSide = "N/A";
         }
+
         menu += daysOfWeek[i] + ": " + randomMain + " with " + randomSide + "<br>";
-      }
+        shoppingList += daysOfWeek[i] + ": " + mainsShopping[randomMain].join(", ") + ", " + sidesShopping[randomSide].join(", ") + "<br>";
+        }
       document.getElementById("menuContainer").innerHTML = menu;
+      buttonContainer.style.display = "block";
+        buttonContainer.addEventListener("click", function() {
+            document.getElementById("menuContainer").innerHTML = shoppingList + "<br>" + menu
+
+        });
     });
   </script>
 
